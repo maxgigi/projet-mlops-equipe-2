@@ -1,17 +1,26 @@
-# Projet MLOps – Équipe X
+# Projet MLOps – Équipe 2
 
-## Prérequis
-- (poste, accès OpenStack, outils : tofu, ansible, kubectl, helm, python 3.x...)
+## Pôles :
+- P1 : Cloud Openstack - Etan DU & Max GIRARDOT
+- P2 : Kubernetes - Nawal ICHENE & Najib HABLOUZ
+- P3 : MLFlow - Dinh Huy NGUYEN & Gia Khanh NGUYEN
+- P4 : Serving - Bechir HAJ BELGACEM & Yassir BENHADDOUCHE
+- P5 : Observation et tests - Gregory CAVILLOT
+- P6 : Intégration et documentation - Max GIRARDOT
 
-## Reconstruire de A à Z
-make openstack      # 1. déploiement OpenStack
-make tenant         # 2. projet/réseaux/VM (OpenTofu)
-make cluster        # 3. Kubernetes
-make platform       # 4. MinIO, MLflow, Knative, KServe, monitoring
-make train          # 5. entraînement
-make deploy-model   # 6. déploiement du modèle
-make bench          # 7. benchmark
-make demo           # 8. démo
+## Structure du dépôt
+- README.md # comment tout reconstruire de A a Z (OpenStack inclus)
+- versions.yaml # versions figees (OpenStack, Kubernetes, KServe...)
+- Makefile # make openstack | tenant | cluster | platform | train | deploy-model | bench | demo
+- docs/ # architecture, adr/, rapport/, journal/ (carnets de bord)
+- openstack/ # deploiement : MicroStack, DevStack ou Kolla-Ansible
+- tenant/ # provisioning OpenStack : OpenTofu ou openstacksdk, cloud-init
+- infra/kubernetes/ # playbooks Ansible ou scripts kubeadm/k3s
+- platform/ # manifests ou Helm : minio, mlflow, kserve, knative, monitoring
+- ml/ # src/, tests/, train.py, configuration MLflow
+- serving/ # InferenceService, secrets (modeles sans valeurs), tests d’API
+- bench/ # scripts k6/Locust, resultats bruts (CSV), notebooks
+- .ci/ # pipeline (lint, validation des manifests, tests)
 
-## Organisation
-Voir docs/architecture.md, docs/adr/ et CONTRIBUTING.md.
+## Comment tout reconstruire de A à Z (OpenStack inclus)
+TODO
