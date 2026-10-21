@@ -1,0 +1,8 @@
+# Source de vérité des versions. Toute modification passe par une PR.
+openstack: "TODO"
+kubernetes: "TODO"
+knative: "TODO"
+kserve: "TODO"
+mlflow: "TODO"
+minio: "TODO"
+python: "TODO"

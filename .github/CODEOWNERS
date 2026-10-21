@@ -1,0 +1,8 @@
+/openstack/        @TODO-infra
+/tenant/           @TODO-infra
+/infra/kubernetes/ @TODO-infra
+/platform/         @TODO-plateforme
+/ml/               @TODO-ml
+/serving/          @TODO-ml @TODO-plateforme
+/bench/            @TODO-bench
+/versions.yaml     @TODO-lead
