@@ -1,0 +1,8 @@
+le 21 oct
+Vu qu'on travaille sur la même machine:
+- Objectif principal : un cluster Kubernetes fonctionnel sur des VM OpenStack (jalon J3), base de toute la chaîne MLOps
+- Pour l’instant : on construit le cluster à la main, on ne rédige pas encore les fichiers de configuration
+- Fait jusqu’ici : infrastructure OpenStack (VM, réseau, clé SSH, groupe de sécurité) et résolution des pannes
+- Fichiers de configuration, ensuite : cloud-init-k8s.yaml (déjà écrit), playbook Ansible, manifests Kubernetes
+- Logique du plan : tout faire à la main, puis automatiser ce qui a marché, puis documenter
+- Point actuel : fin de l’étape 1, il reste à installer Kubernetes lui-même
