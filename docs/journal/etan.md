@@ -1,4 +1,4 @@
-# Journal de Bord Etan
+# Journal de Bord - Etan DU (P1)
 
 ## 21 octobre 2026
 
