@@ -1,0 +1,20 @@
+{
+  "file": "california_housing.csv",
+  "sha256": "94ef369b909f5c725340b512b7c9a05c1550a554b6592d29303990e3ba521a1f",
+  "rows": 20640,
+  "features": [
+    "MedInc",
+    "HouseAge",
+    "AveRooms",
+    "AveBedrms",
+    "Population",
+    "AveOccup",
+    "Latitude",
+    "Longitude"
+  ],
+  "target": "MedHouseVal",
+  "source": "sklearn.datasets.fetch_california_housing",
+  "sklearn_version": "1.5.1",
+  "pandas_version": "2.2.3",
+  "created_at": "2026-10-23T13:45:26+00:00"
+}

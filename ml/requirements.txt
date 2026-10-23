@@ -1,0 +1,13 @@
+# Versions figées du client d'entraînement (pôle P3). Toute modification passe par une PR.
+# scikit-learn, numpy, joblib et scipy = versions du runtime sklearn de KServe v0.14.0,
+# version utilisée par P4 pour la validation locale (serving/README.md), à confirmer
+# dans versions.yaml : le modèle se recharge alors à l'identique dans KServe.
+# numpy 1.26.4 n'existe pas pour Python 3.13 : environnement en Python 3.12.
+# mlflow = même version que le serveur MLflow.
+mlflow==3.17.2
+scikit-learn==1.5.1
+numpy==1.26.4
+joblib==1.4.2
+pandas==2.2.3
+boto3==1.43.116
+scipy==1.13.1

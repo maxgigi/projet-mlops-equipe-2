@@ -1,3 +1,9 @@
 .env
 __pycache__/
 .venv/
+# Jeu de données régénéré par src/prepare_data.py : trop gros pour Git
+# (hook check-added-large-files, limite 1000 Ko). Seul le manifeste est commité.
+data/*.csv
+
+# Base SQLite si un serveur MLflow local est lancé par erreur dans le dépôt
+*.db
