@@ -1,4 +1,4 @@
-# Journal de Bord - Gia Khanh NGUYEN (P1)
+# Journal de Bord - Gia Khanh NGUYEN (P4)
 
 ## 21 octobre 2026
 
