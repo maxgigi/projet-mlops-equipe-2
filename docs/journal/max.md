@@ -11,4 +11,5 @@
 
 - Ai tenu la réunion d'équipe + journal 2026-10-23.md ;
 - P6 - Ai préparé le template ADR ;
-- Couche physique - Clé bootable avec Rufus,  ;
+- Couche physique - Clé bootable Rufus, Debian 13.7.xx avec interface graphique sur la machine contrôleur (OptiFlex 67);
+- Le DHCP Switch fonctionne : L'internet est bien délivré à nos machines physiques.
