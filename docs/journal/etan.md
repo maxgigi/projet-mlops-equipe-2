@@ -14,3 +14,13 @@
 ### Tâches :
 - VM Openstack complète avec devstack
 - Début test de Kolla Ansible sur des VMs pour le futur déploiement sur les machines physiques
+
+## 3 novembre 2026
+
+### Tâches :
+- Continue le test de Kolla Ansible sur les VMs
+
+## 4 novembre 2026
+
+### Tâches :
+- Fini le test de Kolla Ansible sur les VMs
