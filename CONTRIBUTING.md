@@ -1,8 +1,7 @@
-# Contribuer
-- `main` est protégée : PR obligatoire, 1 review minimum, CI verte.
-- Branches : `feat/<zone>-<sujet>`, `fix/...`, `docs/...` (courtes, < 3 jours).
-- Commits : Conventional Commits (`feat(platform): ajoute mlflow`).
-- Merge : squash. Rebase sur main avant de merger.
-- Zéro secret dans git. Utiliser les fichiers `*.example` + un coffre partagé.
-- Décision d'architecture = une ADR dans docs/adr/.
-- Journal de bord : un fichier par personne dans docs/journal/<prenom>.md.
+# Contribuer au projet
+
+- Au début de chaque créneau dédié au projet, on passe quelques minutes à expliquer nos avancées / idées / problèmes. Le `docs/journal/AAA-MM-JJ.md` est créé et renseigné accordément ;
+- Chaque pôle (P1-P6) travaille dans son dossier dédié. Les membres d'un pôle n'ont pas accès aux dossiers des autres pôles. Les membres au sein d'un pôle se valident entre eux ;
+- Les fichiers et commits sont auto-descriptifs (`feat(platform): ajoute mlflow`) ;
+- Pas de secrets dans le git ;
+- Décision d'architecture = une ADR dans docs/adr/ ;
