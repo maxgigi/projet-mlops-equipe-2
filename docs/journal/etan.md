@@ -24,3 +24,9 @@
 
 ### Tâches :
 - Fini le test de Kolla Ansible sur les VMs
+
+## 10 novembre 2026
+
+### Tâches :
+- Continue les tests sur les VM pour configurer les services (Horizon, heat)
+- Révision de l'architecture et des éléments nécessaires
