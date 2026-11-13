@@ -17,3 +17,9 @@
 ## 03/11/2026
 
 - En autonomie, ai mis en place le document d'architecture v0, et ai documenté la partie Socle Physique et Cloud OpenStack du projet ;
+
+## 10/11/2026
+
+- Ai continué à préparer la couche physique ;
+- Installation des outils Kolla-Ansible sur les machines ;
+- Préparation d'une 4ème machine (60) qui servira de NAT.
