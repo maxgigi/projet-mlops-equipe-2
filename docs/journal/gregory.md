@@ -21,3 +21,10 @@
 
 ### Problèmes rencontrés
 - N'ayant pas encore l'infrastructure du projet je ne peux pas faire de test sur celui-ci
+
+## 17 novembre 2026
+
+### Tâches faites
+-Aide du pole 1 avec la récupérations des informations des différents ressources utilisables
+-Aide dans la réflexion de la mise en place de l'openstack sur les machines
+-continuation du scripts d'automatisation de tout la partie observabilités
