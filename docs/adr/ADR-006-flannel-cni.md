@@ -14,7 +14,7 @@ Le cluster tourne dans des VM OpenStack, dont le réseau de tenant est lui-même
 | Cilium | eBPF, observabilité, NetworkPolicy avancées | Prérequis noyau, plus lourd à maîtriser |
 
 ## Décision
-Nous retenons **Flannel**. Raison principale : simplicité et faible consommation sur un cluster à ressources limitées. Version : [`versions.yaml`]. Backend : [VXLAN].
+Nous retenons **Flannel**. Raison principale : simplicité et faible consommation sur un cluster à ressources limitées. Version : versions.yaml.
 
 ## Conséquences
 - (+) Installation rapide, peu de ressources consommées.
