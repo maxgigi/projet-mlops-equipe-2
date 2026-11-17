@@ -23,3 +23,7 @@
 - Ai continué à préparer la couche physique ;
 - Installation des outils Kolla-Ansible sur les machines ;
 - Préparation d'une 4ème machine (60) qui servira de NAT.
+
+## 17/11/2026
+
+- su - ; nano /etc/resolv.conf ; search google.com ; nameserver 8.8.8.8 -> fix aux problèmes réseau salles d'options
