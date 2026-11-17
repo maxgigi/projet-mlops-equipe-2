@@ -26,4 +26,5 @@
 
 ## 17/11/2026
 
-- su - ; nano /etc/resolv.conf ; search google.com ; nameserver 8.8.8.8 -> fix aux problèmes réseau salles d'options
+- su - ; nano /etc/resolv.conf ; search google.com ; nameserver 8.8.8.8 -> fix aux problèmes réseau salles d'options ;
+- Communications tuteur + équipe + pôles .
