@@ -14,3 +14,9 @@
 - Lecture du documentation officielle de MLFlow pour le déploiement
 - Déploiement de MLflow en local avec Docker compose
 - Ecriture de ADR pour la base de donnée et le stockage d'objet de MLflow
+
+
+## 17 novembre 2026
+### Tâches :
+- Consulter le jeu de données California Housing pour le projet
+- Préparer le script pour l'entrainement du modèle
