@@ -1,6 +1,6 @@
 # ADR-006 : Flannel comme plugin réseau (CNI)
 
-- Date : [23/10/2026]
+- Date : 23/10/2026
 - Statut : proposée
 
 ## Contexte
@@ -14,13 +14,12 @@ Le cluster tourne dans des VM OpenStack, dont le réseau de tenant est lui-même
 | Cilium | eBPF, observabilité, NetworkPolicy avancées | Prérequis noyau, plus lourd à maîtriser |
 
 ## Décision
-Nous retenons **Flannel**. Raison principale : simplicité et faible consommation sur un cluster à ressources limitées. Version : [à compléter, à figer dans `versions.yaml`]. Backend : [à compléter, ex. VXLAN].
+Nous retenons **Flannel**. Raison principale : simplicité et faible consommation sur un cluster à ressources limitées. Version : [`versions.yaml`]. Backend : [VXLAN].
 
 ## Conséquences
 - (+) Installation rapide, peu de ressources consommées.
-- (−) Pas de NetworkPolicy : l'isolation entre pods repose sur autre chose (groupes de sécurité OpenStack, [à compléter]).
-- (−) Double encapsulation : MTU des pods à calculer et à fixer (MTU du réseau OpenStack moins l'en-tête VXLAN, soit 50 octets). Valeur retenue : [à compléter].
-- Validation actuelle : [à compléter]. **À rejouer sur OpenStack**.
+- (−) Pas de NetworkPolicy : l'isolation entre pods repose sur autre chose (groupes de sécurité OpenStack).
+- (−) Double encapsulation : MTU des pods à calculer et à fixer (MTU du réseau OpenStack moins l'en-tête VXLAN, soit 50 octets).
 
 ## Plan B
 Migrer vers Calico si les NetworkPolicy deviennent nécessaires ou si le MTU pose des problèmes persistants.
