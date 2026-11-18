@@ -34,3 +34,13 @@ docker compose -f compose.yaml logs -f mlflow
 ```bash
 docker compose -f compose.yaml down
 ```
+
+Pour entraîner le modèle Random Forest de prédiction du prix et l’enregistrer
+dans l’expérience `california-housing-random-forest` :
+
+```bash
+MLFLOW_TRACKING_URI=http://127.0.0.1:5000 python ml/src/random_forest.py
+```
+
+Le run journalise les paramètres, les métriques RMSE/MAE/R², l’empreinte des
+données et le modèle `housing-random-forest` sous l’alias `champion`.

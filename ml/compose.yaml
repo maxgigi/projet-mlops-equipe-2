@@ -94,7 +94,7 @@ services:
           "CMD",
           "python",
           "-c",
-          "import urllib.request; urllib.request.urlopen('http://localhost:${MLFLOW_PORT}/health')",
+          "import urllib.request; urllib.request.urlopen('${MLFLOW_URI}/health')",
         ]      
       interval: 10s
       timeout: 5s

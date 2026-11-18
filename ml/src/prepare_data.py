@@ -47,8 +47,15 @@ def write_csv() -> int:
     """Télécharge le jeu via scikit-learn et l'écrit en CSV. Renvoie le nombre de lignes."""
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     df = fetch_california_housing(as_frame=True).frame[FEATURES + [TARGET]]
-    df.to_csv(CSV_PATH, index=False)
+    df.to_csv(CSV_PATH, index=False, encoding="utf-8", lineterminator="\n")
     return int(df.shape[0])
+
+
+def normalize_csv_newlines() -> str:
+    """Normalise les retours à la ligne pour produire un SHA portable entre OS."""
+    data = CSV_PATH.read_bytes().replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+    CSV_PATH.write_bytes(data)
+    return sha256(CSV_PATH)
 
 
 def main() -> int:
@@ -61,7 +68,7 @@ def main() -> int:
         if not CSV_PATH.exists():
             print(f"{CSV_PATH.name} absent : régénération depuis la source officielle…")
             write_csv()
-        actual = sha256(CSV_PATH)
+        actual = normalize_csv_newlines()
         if actual != manifest["sha256"]:
             print(
                 "ERREUR : empreinte différente du manifeste\n"
