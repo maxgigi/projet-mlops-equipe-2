@@ -1,0 +1,33 @@
+# Environnement du pôle P3 (client d'entraînement MLflow), géré par uv.
+# Source de vérité des dépendances directes ; uv.lock fige tout l'arbre (transitives incluses).
+# Installation : `cd ml && uv sync`   |   Exécution : `uv run python src/hello_run.py`
+#
+# Les versions de scikit-learn, numpy, joblib et scipy suivent le runtime sklearn
+# de KServe v0.14.0 (voir serving/README.md) : le modèle doit s'y recharger à l'identique.
+# numpy 1.26.4 n'existe pas pour Python 3.13+, d'où Python 3.12.
+# Toute modification passe par une PR, puis `uv lock` et mise à jour de versions.yaml.
+
+[project]
+name = "mlops-equipe-2-ml"
+version = "0.1.0"
+description = "Pôle P3 : données, entraînement et suivi MLflow (California Housing)"
+requires-python = "==3.12.*"
+dependencies = [
+    "mlflow==3.17.2",      # = version du serveur MLflow
+    "scikit-learn==1.5.1", # = runtime sklearn de KServe v0.14.0
+    "numpy==1.26.4",
+    "joblib==1.4.2",
+    "scipy==1.13.1",
+    "pandas==2.2.3",
+    "boto3==1.43.116",
+]
+
+[tool.uv]
+# Projet de scripts, pas un paquet Python installable.
+package = false
+# Résolution figée à la date de gel de l'environnement (23/10/2026) : `uv lock` ignore
+# toute version publiée après, et redonne exactement l'environnement figé ce jour-là
+# (ancien requirements.lock.txt, supprimé : pyproject.toml + uv.lock sont la seule source).
+# Pour monter une version : modifier cette date (ou la dépendance) dans une PR, puis `uv lock`.
+# Besoin d'un fichier pip (image Docker, Job K8s) : `uv export --frozen -o requirements.txt`.
+exclude-newer = "2026-10-23T14:00:00Z"
