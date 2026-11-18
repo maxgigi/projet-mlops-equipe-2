@@ -28,3 +28,9 @@
 -Aide du pole 1 avec la récupérations des informations des différents ressources utilisables
 -Aide dans la réflexion de la mise en place de l'openstack sur les machines
 -continuation du scripts d'automatisation de tout la partie observabilités
+
+## 18 novembre 2026
+
+### Tâches faites
+-Finition du script et test (tout fonctionne bien)
+-Aide du pôle P1 dans leur tache 
