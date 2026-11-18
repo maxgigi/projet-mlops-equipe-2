@@ -1,4 +1,27 @@
-# Tester MLflow avec Docker Compose
+# Pôle P3 — ML, données, MLflow
+
+## Environnement Python (uv)
+
+L'environnement est géré par [uv](https://docs.astral.sh/uv/) en mode projet :
+
+- `pyproject.toml` : Python 3.12 et dépendances directes, versions figées
+  (alignées sur le runtime sklearn de KServe v0.14.0) ;
+- `uv.lock` : arbre complet figé (dépendances transitives et empreintes) ;
+- `.python-version` : uv télécharge et utilise Python 3.12 automatiquement.
+
+Depuis ce dossier (`ml/`) :
+
+```bash
+uv sync                               # crée ml/.venv, identique à uv.lock
+uv run python src/prepare_data.py     # jeu de données figé (vérifie le SHA-256)
+```
+
+`uv run` exécute dans `.venv` sans avoir à l'activer. Pour changer une version :
+modifier `pyproject.toml` (et, si besoin, la date `exclude-newer`), lancer
+`uv lock`, puis reporter la version dans `versions.yaml`, le tout dans une PR.
+`uv lock --check` vérifie que `uv.lock` est à jour.
+
+## Tester MLflow avec Docker Compose
 
 Depuis ce dossier (`ml/`), préparer la configuration puis démarrer la stack :
 
@@ -17,8 +40,7 @@ Pour effectuer un test de bout en bout (run, métrique, modèle enregistré et
 artefact) :
 
 ```bash
-python -m pip install mlflow==3.17.2 scikit-learn
-python tests/smoke_test.py
+uv run python tests/smoke_test.py
 ```
 
 Le test doit afficher un identifiant de run, une valeur RMSE et l’alias

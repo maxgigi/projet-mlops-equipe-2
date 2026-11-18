@@ -26,6 +26,8 @@ dependencies = [
 # Projet de scripts, pas un paquet Python installable.
 package = false
 # Résolution figée à la date de gel de l'environnement (23/10/2026) : `uv lock` ignore
-# toute version publiée après, et redonne exactement l'arbre de requirements.lock.txt.
+# toute version publiée après, et redonne exactement l'environnement figé ce jour-là
+# (ancien requirements.lock.txt, supprimé : pyproject.toml + uv.lock sont la seule source).
 # Pour monter une version : modifier cette date (ou la dépendance) dans une PR, puis `uv lock`.
+# Besoin d'un fichier pip (image Docker, Job K8s) : `uv export --frozen -o requirements.txt`.
 exclude-newer = "2026-10-23T14:00:00Z"

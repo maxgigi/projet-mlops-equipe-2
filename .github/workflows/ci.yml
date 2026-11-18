@@ -9,6 +9,26 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with: { python-version: "3.11" }
+        with:
+          python-version: "3.11"
       - run: pip install pre-commit
       - run: .ci/lint.sh
+
+  # Pôle P3 : ml/pyproject.toml et ml/uv.lock doivent rester cohérents.
+  ml-env:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ml
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.13.0"
+      # Échoue si pyproject.toml a changé sans relancer `uv lock`.
+      - run: uv lock --check
+      # Installe exactement uv.lock (Python 3.12 fourni par uv).
+      - run: uv sync --frozen
+      - run: >-
+          uv run --frozen python -c
+          "import mlflow, sklearn; print(mlflow.__version__)"
