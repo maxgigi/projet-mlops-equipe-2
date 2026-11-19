@@ -29,6 +29,11 @@
 - su - ; nano /etc/resolv.conf ; search google.com ; nameserver 8.8.8.8 -> fix aux problèmes réseau salles d'options ;
 - Communications tuteur + équipe + pôles .
 
-## 17/11/2026 - 17h-18h40
+## 18/11/2026 - 17h-18h40
 
 - La machine 60 n'arrive pas à trouver les miroirs debian. J'ai effectué l'installation de debian en salle d'option ainsi qu'en salle 213 sans succès. Le DHCP fonctionne, mais le manque de miroir nous passe dans une install minimale. Je ne sais pas si c'est la machine qui est cassée ( potentiellement groupe précédent qui bidouillé ) ou si c'est réseau INSA qui où que j'aille me tourmente.
+
+## 19/11/2026
+
+- Machine 60 ok, c'était 'juste' le DNS INSA (encore) qui délivre pas le réseau comme il faut. Le fix était de corriger le DNS durant l'installation initiale : Ctrl+Alt+F2 ; echo "nameserver 8.8.8.8" > /etc/resolv.conf ; echo "nameserver 1.1.1.1" >> /etc/resolv.conf ; Alt+F5 ; <- Avant d'atteindre l'étape miroir ;
+- Recherche sur la mise en place d'un NAT pour cette machine.
