@@ -1,8 +1,13 @@
 # Source de vérité des versions. Toute modification passe par une PR.
+
+# Pôle 1 : OpenStack
 openstack: "TODO"
+
+
 kubernetes: "TODO"
 knative: "TODO"
 kserve: "TODO"
+
 # Pôle P3 : détail dans ml/pyproject.toml et ml/.env.example (ADR-003, 004)
 mlflow: "3.17.2"
 scikit-learn: "1.5.1"
