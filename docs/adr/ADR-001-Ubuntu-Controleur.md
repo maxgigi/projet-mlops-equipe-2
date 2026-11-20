@@ -1,6 +1,7 @@
 # ADR-001 : Distribution Ubuntu pour Socle Physique
 - Date : 23/10/2026
-- Statut : Remplacée (20/11/2026)
+- Statut : Remplacée par ADR-009-Firmware (20/11/2026)
+
 ## Contexte
 Notre socle physique et notre installation OpenStack se fera sur la base de trois machines : 1 Contrôleur OpenStack et 2 Computes. 
 Il nous faut donc un ensemble d'interfaces afin de pouvoir aisément déployer et manipuler les différents services d'OpenStack.
