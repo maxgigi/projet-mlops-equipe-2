@@ -19,6 +19,7 @@
 - platform/ # manifests ou Helm : minio, mlflow, kserve, knative, monitoring
 - ml/ # src/, tests/, train.py, configuration MLflow
 - serving/ # InferenceService, secrets (modeles sans valeurs), tests d’API
+- socle_physique # hardware, firmware
 - bench/ # scripts k6/Locust, resultats bruts (CSV), notebooks
 - .ci/ # pipeline (lint, validation des manifests, tests)
 
