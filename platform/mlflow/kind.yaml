@@ -1,0 +1,13 @@
+# Cluster de développement local (pas la cible) pour valider la pile MLflow.
+# kind create cluster --name p3 --config platform/mlflow/kind.yaml
+# Le NodePort 30500 de MLflow est publié sur http://localhost:30500.
+---
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+  - role: control-plane
+  - role: worker
+    extraPortMappings:
+      - containerPort: 30500
+        hostPort: 30500
+        listenAddress: "127.0.0.1"

@@ -1,0 +1,38 @@
+# Crée le bucket des artefacts (idempotent). Le Job s'efface 10 min après
+# sa fin, pour pouvoir réappliquer la pile sans conflit (champs immuables).
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: create-bucket
+spec:
+  backoffLimit: 10
+  ttlSecondsAfterFinished: 600
+  template:
+    spec:
+      restartPolicy: OnFailure
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+      containers:
+        - name: rc
+          image: rustfs/rc
+          command: ["/bin/sh", "-c"]
+          args:
+            - >-
+              rc alias set rustfs http://rustfs:9000
+              "$RUSTFS_ACCESS_KEY" "$RUSTFS_SECRET_KEY"
+              --region us-east-1 --bucket-lookup path
+              && rc bucket create rustfs/mlflow --ignore-existing
+          env:
+            - name: HOME
+              value: /tmp
+            - name: RUSTFS_ACCESS_KEY
+              valueFrom:
+                secretKeyRef: {name: mlflow-secrets, key: RUSTFS_ACCESS_KEY}
+            - name: RUSTFS_SECRET_KEY
+              valueFrom:
+                secretKeyRef: {name: mlflow-secrets, key: RUSTFS_SECRET_KEY}
+          resources:
+            requests: {cpu: 50m, memory: 32Mi}
+            limits: {cpu: 200m, memory: 128Mi}
