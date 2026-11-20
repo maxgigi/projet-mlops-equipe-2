@@ -37,3 +37,16 @@
 -Finition du script et test (tout fonctionne bien)
 
 -Aide du pôle P1 dans leur tâche
+
+## 20 novembre 2026
+
+### Tâches faites
+- Réajustement du script et mise en place d'une documentation vis-à-vis des problèmes de connexion au Grafana et de port-forwarding.
+- Aide au pôle 1 dans la finition des installations de l'infrastructure OpenStack.
+- Création d'alertes envoyées par mail.
+- Problème dans la mise en place d'email pour alerte Grafana, donc modification du script afin d'activer les paramètres nécessaires.(smtp)
+
+### Problèmes rencontrés
+- Différents petits problèmes liés au script notamment dans l'écoute des ports qui ne se faisait plus.
+
+  
