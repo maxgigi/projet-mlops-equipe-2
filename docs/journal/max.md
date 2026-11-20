@@ -37,3 +37,11 @@
 
 - Machine 60 ok, c'était 'juste' le DNS INSA (encore) qui délivre pas le réseau comme il faut. Le fix était de corriger le DNS durant l'installation initiale : Ctrl+Alt+F2 ; echo "nameserver 8.8.8.8" > /etc/resolv.conf ; echo "nameserver 1.1.1.1" >> /etc/resolv.conf ; Alt+F5 ; <- Avant d'atteindre l'étape miroir ;
 - Recherche sur la mise en place d'un NAT pour cette machine.
+
+## 20/11/2026
+
+- Ai commencé la configuration du routeur NAT, sur la base de IPs fixes associées aux adresses MACs des machines.
+- Monsieur Ferrere nous a fourni un premier adaptateur USB-A vers RJ45, qui nous permettra de tester le bon fonctionnement du NAT une fois le switch configuré et l'ensemble des machines branchées (conformément à nos schémas d'architecture).
+
+
+
