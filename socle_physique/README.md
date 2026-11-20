@@ -25,7 +25,7 @@ Ci dessous les hostnames, n° de machine, adresses MAC et adresses IPs fixes de 
 - Brancher un adaptateur supplémentaire entre le switch et le controller, destiné machines virtuelles du cluster.
 
 ## NAT
-
+Ensemble d'opérations à effectuer pour configurer le router NAT :
 ```
 #!/bin/bash
 set -e
@@ -91,4 +91,11 @@ EOF
 systemctl enable --now nftables dnsmasq
 systemctl restart nftables dnsmasq
 ```
-
+Vérifications :
+```
+ip -br a                      # 192.168.50.1/24 sur le LAN
+nft list ruleset
+systemctl status dnsmasq
+journalctl -u dnsmasq -f      # DHCPACK quand les nœuds démarrent
+cat /var/lib/misc/dnsmasq.leases
+```
