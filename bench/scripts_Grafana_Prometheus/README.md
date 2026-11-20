@@ -25,3 +25,18 @@ Automatise l'installation du lab de test (k3s + appli témoin + Prometheus/Grafa
 
 `config.env` (généré) ne contient aucun secret. Le mot de passe Grafana n'existe que
 dans le Secret Kubernetes `grafana-admin` (exigence ENG-2).
+
+## Problèmes connues :
+-Si l'accès à grafana n'arrive pas ce faire (connexion échoué) vérifier sur la machine lab-k8s l'écoute du port 3000
+-
+
+## Au besoin faire (sur la machine hôte):
+ ./install.sh --only monitoring
+Cela permet de faire uniquement les étapes de vérification 
+
+## Accés par défaut :
+-Grafana     : http://192.168.122.50:3000   (identifiant : admin) mdp, faire sur la machine k8s-lab : kubectl -n monitoring get secret grafana-admin \-o jsonpath='{.data.admin-password}' | base64 -d; echo
+-Prometheus  : http://192.168.122.50:9090/targets
+
+## Benchmark : 
+lancer sur lab-load  :  ~/p5/bench/run_scenario.sh (b1/b2 ou b5)
