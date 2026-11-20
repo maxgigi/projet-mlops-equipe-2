@@ -50,6 +50,10 @@ def load_frozen_dataset() -> tuple[pd.DataFrame, pd.Series]:
 
 
 def main() -> None:
+    # MLflow 3.17 would otherwise download artifacts directly from S3 with presigned
+    # URLs signed for the internal endpoint (http://rustfs:9000), unreachable from
+    # outside the stack network: force downloads through the MLflow server (ADR-004).
+    os.environ.setdefault("MLFLOW_ENABLE_PROXY_MULTIPART_DOWNLOAD", "false")
     mlflow.set_tracking_uri(
         os.environ.get("MLFLOW_TRACKING_URI", "http://localhost:5000")
     )

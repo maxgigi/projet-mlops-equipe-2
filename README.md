@@ -16,9 +16,10 @@
 - openstack/ # deploiement : MicroStack, DevStack ou Kolla-Ansible
 - tenant/ # provisioning OpenStack : OpenTofu ou openstacksdk, cloud-init
 - infra/kubernetes/ # playbooks Ansible ou scripts kubeadm/k3s
-- platform/ # manifests ou Helm : minio, mlflow, kserve, knative, monitoring
+- platform/ # manifests ou Helm : rustfs, mlflow, kserve, knative, monitoring
 - ml/ # src/, tests/, train.py, configuration MLflow
 - serving/ # InferenceService, secrets (modeles sans valeurs), tests d’API
+- socle_physique # hardware, firmware
 - bench/ # scripts k6/Locust, resultats bruts (CSV), notebooks
 - .ci/ # pipeline (lint, validation des manifests, tests)
 

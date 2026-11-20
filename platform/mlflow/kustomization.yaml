@@ -1,0 +1,29 @@
+# Pile MLflow du pôle P3 : kubectl apply -k platform/mlflow
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: mlops
+
+resources:
+  - namespace.yaml
+  - postgres.yaml
+  - rustfs.yaml
+  - bucket-job.yaml
+  - mlflow.yaml
+
+# Identifiants : secret.env (hors Git), à créer depuis secret.env.example.
+secretGenerator:
+  - name: mlflow-secrets
+    envs:
+      - secret.env
+
+# Versions des images en un seul endroit (identiques à versions.yaml).
+images:
+  - name: postgres
+    newTag: "16.15"
+  - name: rustfs/rustfs
+    newTag: "1.0.6"
+  - name: rustfs/rc
+    newTag: "v0.1.37"
+  - name: mlops/mlflow-server
+    newTag: "3.17.2-2"

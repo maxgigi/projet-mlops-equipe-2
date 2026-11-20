@@ -4,7 +4,7 @@
 - Statut : proposée
 
 ## Contexte
-Le cluster prévu compte 4 VM : 1 control plane (4 vCPU / 8 Go) et 3 workers (4 vCPU / 12 Go chacun), soit 16 vCPU et 44 Go, hébergées sur OpenStack. Le déploiement doit être reproductible et maîtrisé par l'équipe.
+Le cluster prévu compte 4 VM : 1 control plane (4 vCPU / 6 Go) et 3 workers (4 vCPU / 6 Go chacun), soit 16 vCPU et 24 Go, hébergées sur OpenStack. Le déploiement doit être reproductible et maîtrisé par l'équipe.
 
 ## Options considérées
 | Option | Avantages | Inconvénients |

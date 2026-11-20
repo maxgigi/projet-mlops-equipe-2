@@ -1,6 +1,7 @@
 # ADR-001 : Distribution Ubuntu pour Socle Physique
 - Date : 23/10/2026
-- Statut : proposée
+- Statut : Remplacée par ADR-009-Firmware (20/11/2026)
+
 ## Contexte
 Notre socle physique et notre installation OpenStack se fera sur la base de trois machines : 1 Contrôleur OpenStack et 2 Computes. 
 Il nous faut donc un ensemble d'interfaces afin de pouvoir aisément déployer et manipuler les différents services d'OpenStack.
@@ -9,11 +10,13 @@ Il nous faut donc un ensemble d'interfaces afin de pouvoir aisément déployer e
 N'importe quelle distribution d'Ubuntu avec interface graphique devrait faire l'affaire.
 
 ## Décision
-Nous avons retenu la debian-13.7.0-amd64, version la plus récente.
+(Nous avons retenu la debian-13.7.0-amd64, version la plus récente.
 Nous l'avons installée sur nos trois machines :
 - 67 - Contrôleur ;
 - 68 - Compute-1 ;
-- 64 - Compute-2.
+- 64 - Compute-2.)
+
+Voir ADR-009-Firmware
 
 ## Conséquences
 

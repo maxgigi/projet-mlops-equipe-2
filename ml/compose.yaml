@@ -1,9 +1,9 @@
 # Local MLflow stack for pôle P3 — MLflow + PostgreSQL + RustFS (S3-compatible)
 
 services:
-  # ---------- Backend store: runs, params, metrics, registry metadata ----------
+  # ---------- Backend store: runs, params, metrics, registry ----------
   postgres:
-    image: postgres:16
+    image: postgres:${POSTGRES_VERSION:?see .env.example}
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -75,6 +75,9 @@ services:
       AWS_ACCESS_KEY_ID: ${RUSTFS_ACCESS_KEY}
       AWS_SECRET_ACCESS_KEY: ${RUSTFS_SECRET_KEY}
       AWS_DEFAULT_REGION: us-east-1
+      # Background "jobs" (GenAI scorers, trace archival) are not used by the
+      # project and start ~7 extra processes (~1.7 GiB): disabled.
+      MLFLOW_SERVER_ENABLE_JOB_EXECUTION: "false"
     command:
       - /bin/bash
       - -c
@@ -85,7 +88,8 @@ services:
           --artifacts-destination "s3://${MLFLOW_BUCKET}/mlflow-artifacts" \
           --serve-artifacts \
           --host "${MLFLOW_HOST}" \
-          --port "${MLFLOW_PORT}"
+          --port "${MLFLOW_PORT}" \
+          --workers "${MLFLOW_WORKERS:-2}"
     ports:
       - "127.0.0.1:5000:5000"
     healthcheck:
