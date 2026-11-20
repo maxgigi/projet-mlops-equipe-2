@@ -99,3 +99,7 @@ systemctl status dnsmasq
 journalctl -u dnsmasq -f      # DHCPACK quand les nœuds démarrent
 cat /var/lib/misc/dnsmasq.leases
 ```
+
+## Tests
+
+- ping compute1 fonctione
