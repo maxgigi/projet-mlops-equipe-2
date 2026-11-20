@@ -18,5 +18,5 @@ Ci dessous les hostnames, n° de machine, adresses MAC et adresses IPs fixes de 
 
 ## Câblage
 - Pour le router, brancher l'amont (WAN, réseau INSA) sur le port ethernet principal, et brancher le switch (LAN) sur l'adaptateur USB-A vers RJ45 ;
-- Brancher le controller et les computes sur le switch, SANS brancher le switch au résseau INSA.
-- Brancher un adaptateur supplémentaire entre le switch et 
+- Brancher le controller et les computes sur le switch, SANS brancher le switch au résseau INSA ;
+- Brancher un adaptateur supplémentaire entre le switch et le controller, destiné machines virtuelles du cluster.
