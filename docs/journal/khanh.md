@@ -20,3 +20,8 @@
 ### Tâches :
 - Consulter le jeu de données California Housing pour le projet
 - Préparer le script pour l'entrainement du modèle
+
+## 20 novembre 2026
+### Tâches :
+- Créer le script pour l'entrainement du modèle Random Forest avec hyperparamètres différents
+- Créer le script pour l'entrainement du modèle Linear Regression et trois Ridge Regression avec hyperparamètres différents
