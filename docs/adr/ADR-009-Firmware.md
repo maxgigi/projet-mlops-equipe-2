@@ -19,7 +19,8 @@ La répartition des machines est la suivante :
 - 60 - NAT.
 
 ## Conséquences
-Cette architecture avec un routeur NAT va nous nécessiter du matériel, notamment pour augmenter le nombre d'interface réseau du routeur NAT, car les Optiplex utilisés n'en possèdent qu'une seule (achat adaptateur USB-C vers RJ45 ~ 10€).
+Cette architecture avec un routeur NAT va nous nécessiter du matériel, notamment pour augmenter le nombre d'interface réseau de la machine controlleur, car les Optiplex utilisés n'en possèdent qu'une seule (achat adaptateur USB-C vers RJ45 ~ 10€).
+On pense aussi utiliser une clé réseau afin de relier notre routeur NAT au WIFI INSA.
 
 ## Plan B
 Si la distribution choisie se révèle inadaptée, nous changerons.
