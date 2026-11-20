@@ -42,6 +42,6 @@
 
 - Ai commencé la configuration du routeur NAT, sur la base de IPs fixes associées aux adresses MACs des machines.
 - Monsieur Ferrere nous a fourni un premier adaptateur USB-A vers RJ45, qui nous permettra de tester le bon fonctionnement du NAT une fois le switch configuré et l'ensemble des machines branchées (conformément à nos schémas d'architecture).
-
+- Le socle physique fonctionne ! Le NAT délivre correctement le réseau et les IPs fixes au travers du switch. Le pôle 1 peut désormais s'open la stack 😋.
 
 
