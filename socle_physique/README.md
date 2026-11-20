@@ -12,11 +12,8 @@ Disque sda 465,8 sur 500GB
 Attention pour machine 64, on a aussi loop0 a 100Gb
 
 ## Interfaces réseau
-
-Controlleur 64 - 64:00:6a:88:64:a9
-
-Compute1 68 - 64:00:6a:85:b3:c9
-
-Compute2 67 - 64:00:6a:85:ae:f1
-
-Routeur NAT 60 - 64:00:6a:88:67:29
+Ci dessous les hostnames, n° de machine et adresses MAC de nos machines : 
+- controller 64 - 64:00:6a:88:64:a9
+- compute1 68 - 64:00:6a:85:b3:c9
+- compute2 67 - 64:00:6a:85:ae:f1
+- router 60 - 64:00:6a:88:67:29
