@@ -24,3 +24,13 @@ Vu qu'on travaille sur une machine locale avec peu de ressources :
 ## Le 17 nov
 
 - **Fait** : préparation du merge des 3 fichiers ADR-005 à ADR-007 (mentionnés auparavant comme travail pour le 17/11)
+
+## Le 18 nov
+
+- **Organisation** : préparation du plan de travail et de répartition des tâches pour la séance du 20/11
+- **Configuration** : correction et ajustement des fichiers de configuration des VM Control Plane (CP) et Workers
+
+## Le 20 nov
+
+- **Avancement Kubernetes (J3)** : validation des manifests et déploiements Kubernetes en environnement local
+- **Point de blocage** : déploiement sur l'infrastructure cible en attente de la finalisation des machines virtuelles sur OpenStack (jalon J2)
