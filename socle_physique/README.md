@@ -102,4 +102,10 @@ cat /var/lib/misc/dnsmasq.leases
 
 ## Tests
 
-- ping compute1 fonctione
+- Chaque machine a une IP fixe aasociée à son adresse MAC ;
+- ping nom_de_domaine (ex compute1) fonctionne depuis/vers chaque machine ;
+
+
+
+
+
