@@ -7,8 +7,9 @@ comparaison avec la prédiction locale (le critère du MVP, en miniature).
 
 Prérequis : un serveur MLflow joignable et MLFLOW_TRACKING_URI exporté, par exemple
     export MLFLOW_TRACKING_URI=http://127.0.0.1:5000
-Avec la pile de l'équipe (ml/compose.yaml, MinIO) : voir ml/README.md et
-ml/.env.example pour l'URI et les variables d'accès à MinIO.
+Avec la pile de l'équipe (ml/compose.yaml, RustFS) : voir ml/README.md et
+ml/.env.example pour l'URI et les variables d'accès à RustFS. Exporter aussi
+MLFLOW_ENABLE_PROXY_MULTIPART_DOWNLOAD=false (sinon le rechargement bloque, voir ADR-004).
 Usage (depuis la racine du dépôt) :  python ml/src/hello_run.py
 """
 
