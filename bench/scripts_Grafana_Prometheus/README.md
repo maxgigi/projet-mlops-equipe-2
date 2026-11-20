@@ -32,10 +32,12 @@ dans le Secret Kubernetes `grafana-admin` (exigence ENG-2).
 
 ## Au besoin faire (sur la machine hôte):
  ./install.sh --only monitoring
+
 Cela permet de faire uniquement les étapes de vérification 
 
 ## Accés par défaut :
 -Grafana     : http://192.168.122.50:3000   (identifiant : admin) mdp, faire sur la machine k8s-lab : kubectl -n monitoring get secret grafana-admin \-o jsonpath='{.data.admin-password}' | base64 -d; echo
+
 -Prometheus  : http://192.168.122.50:9090/targets
 
 ## Benchmark : 
