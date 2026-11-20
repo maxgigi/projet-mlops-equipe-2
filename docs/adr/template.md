@@ -1,3 +1,5 @@
+Cet article par Stéphane Robert explique remarquablement bien la nature et l'intérêt des ADRs : https://www.stephane-robert.info/docs/documenter/concevoir/adr/
+
 # ADR-XXX
 ## Titre
 - ADR-XXX : méthode de déploiement OpenStack
