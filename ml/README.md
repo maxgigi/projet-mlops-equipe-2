@@ -66,3 +66,28 @@ MLFLOW_TRACKING_URI=http://127.0.0.1:5000 python ml/src/random_forest.py
 
 Le run journalise les paramètres, les métriques RMSE/MAE/R², l’empreinte des
 données et le modèle `housing-random-forest` sous l’alias `champion`.
+
+Pour initialiser une recherche sur une grille de 12 configurations Random
+Forest et enregistrer chaque run dans l’expérience
+`california-housing-random-forest` :
+
+```bash
+MLFLOW_TRACKING_URI=http://127.0.0.1:5000 python ml/src/init_random_forest.py
+```
+
+Le script teste `n_estimators` dans `[50, 100, 150, 200]` et `max_depth` dans
+`[10, 20, None]`. Chaque modèle est enregistré sous
+`housing-random-forest`; le modèle ayant la meilleure RMSE reçoit l’alias
+`champion`.
+
+Pour entraîner une Linear Regression et trois Ridge Regression avec
+StandardScaler (`alpha` = `0.1`, `1` ou `10`) :
+
+```bash
+MLFLOW_TRACKING_URI=http://127.0.0.1:5000 python ml/src/init_linear.py
+```
+
+Les quatre modèles sont enregistrés dans l’expérience
+`california-housing-linear` sous `housing-random-forest`. Le script lit la RMSE
+du modèle courant portant l’alias `champion`; si aucun champion n’existe, ou si
+aucune RMSE n’est disponible, le meilleur nouveau modèle devient champion.
