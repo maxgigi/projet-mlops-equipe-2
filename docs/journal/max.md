@@ -27,6 +27,11 @@
 ## 17/11/2026
 
 - su - ; nano /etc/resolv.conf ; search google.com ; nameserver 8.8.8.8 -> fix aux problèmes réseau salles d'options ;
+- Fix permanent :
+  ```
+  nmcli con mod "Wired connection 1" ipv4.dns "8.8.8.8 1.1.1.1" ipv4.ignore-auto-dns yes
+  nmcli con up "Wired connection 1"
+  ```
 - Communications tuteur + équipe + pôles .
 
 ## 18/11/2026 - 17h-18h40
