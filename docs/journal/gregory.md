@@ -49,4 +49,16 @@
 ### Problèmes rencontrés
 - Différents petits problèmes liés au script notamment dans l'écoute des ports qui ne se faisait plus.
 
+## 23 novembre 2026
+
+### Tâches faites
+- Création d'un dashboard Grafana de monitoring de la latence de requêtes et des différents aspects réseaux.
+- Création d'un système de transfert et de visualisation des données en les extrayant de Grafana (permettant la visualisation dans le temps).
+- Modification du script afin d'avoir une option cleanup et d'avoir des commandes claires à faire en cas de problèmes de types erreur de création du namespace.
+- Modification du script afin de régler un problème de non suppression des ports des clusters.
+
+### Problèmes rencontrés
+- Erreur de création de namespace lorsque on utilise le même nom de namespace et que l'on renvoie le script.
+- Une erreur de port peut être levée si le port du cluster est déjà utilisé.
+
   
