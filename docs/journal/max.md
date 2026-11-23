@@ -49,4 +49,11 @@
 - Monsieur Ferrere nous a fourni un premier adaptateur USB-A vers RJ45, qui nous permettra de tester le bon fonctionnement du NAT une fois le switch configuré et l'ensemble des machines branchées (conformément à nos schémas d'architecture).
 - Le socle physique fonctionne ! Le NAT délivre correctement le réseau et les IPs fixes au travers du switch. Le pôle 1 peut désormais s'open la stack 😋.
 
+## 23/11/2026
+
+- Petite réorganisation physique après incident (qlqn à fait poum à cause d'un fil ^^' pardon pour ça) ;
+- Monsieur Ferrere nous a fourni un second adaptateur réseau, qui branché entre le switch et le controller, servira d'interface réseau pour Neutron ;
+- Continue la documentation du déploiement socle physique, ainsi que le bon maintien du dépôt.
+
+
 
