@@ -34,3 +34,10 @@ Vu qu'on travaille sur une machine locale avec peu de ressources :
 
 - **Avancement Kubernetes (J3)** : validation des manifests et déploiements Kubernetes en environnement local
 - **Point de blocage** : déploiement sur l'infrastructure cible en attente de la finalisation des machines virtuelles sur OpenStack (jalon J2)
+
+## Le 23 nov ( 9:50 -> 12:20 )
+
+- **Constat matériel** : les machines physiques n'ont pas 16 Go de RAM exploitables mais environ 15,5 Go, ce qui laisse moins de marge que prévu pour l'hôte et les VM
+- **Décision (validée en équipe)** : RAM par VM réduite de 8 Go à 7 Go
+- **Scripts Kubernetes** : scripts de configuration modifiés pour s'adapter au nouveau dimensionnement
+- **Prochaine étape** : début de l'implémentation de ces scripts aujourd'hui, lors de la 2ème séance de projet d'option
