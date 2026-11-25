@@ -53,12 +53,23 @@
 
 ### Tâches faites
 - Création d'un dashboard Grafana de monitoring de la latence de requêtes et des différents aspects réseaux.
-- Création d'un système de transfert et de visualisation des données en les extrayant de Grafana (permettant la visualisation dans le temps).
+- Création d'un système de transfert et de visualisation des données en les extrayant de Grafana (permettant la visualisation dans le temps) (non fini).
 - Modification du script afin d'avoir une option cleanup et d'avoir des commandes claires à faire en cas de problèmes de types erreur de création du namespace.
 - Modification du script afin de régler un problème de non suppression des ports des clusters.
 
 ### Problèmes rencontrés
 - Erreur de création de namespace lorsque on utilise le même nom de namespace et que l'on renvoie le script.
 - Une erreur de port peut être levée si le port du cluster est déjà utilisé.
+
+## 25 novembre 2026
+
+### Tâches faites
+- Création d'un fichier Python permettant de faire des graphiques et résumé les résultats des benchmarks afin d'en garder une trace dans le temps
+- Création d'un script bench.sh permettant de lancer automatiquement le benchmarking avec les paramètres voulus qui sont demandés à l'utilisateur. Ce script permet aussi, sans toucher à la machine de test de charge, donc depuis la machine hôte, de récupérer les résultats et graphiques créés par le script Python afin de les stocker dans un dossier. Encore une fois, le dossier où seront stockés les résultats sera demandé et un dossier par défaut sera utilisé en cas de non-réponse.
+- Réflexion sur la manière de placer et de redimensionner les critères d'alertes afin de les rendre plus alignées avec la finalité du projet.
+
+### Problèmes rencontrés
+- Relégation de mon idée initiale du transfert et de visualisation de données via extraction depuis Grafana pour une solution plus simple, qu'est le fichier Python générant les graphiques.
+
 
   
