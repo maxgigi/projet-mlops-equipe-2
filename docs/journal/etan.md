@@ -48,3 +48,21 @@
 - Continue les tests sur les VMs (scripts de création des VMs openstacks)
 - réflexion sur la configuration du switch
 - réflexion sur les solutions aux manques de materiel pour les inetfaces réseaux (pour le NAT, clé wifi)
+
+
+## 20 novembre 2026
+
+### Tâches :
+- configuration nouveau switch
+- configuration machine physique
+- début install via kolla ansible sur les machines physiques
+- Correction de bug/imprévu multiple lors de l'installation
+
+
+## 23 novembre 2026
+
+### Tâches :
+- finalisation de l'install via kolla-ansible
+- création réseau openstack
+- script provision.sh (projet [quota], user, instances ...) et destroy.sh adapté
+- création des VMs pour Kubernetes
