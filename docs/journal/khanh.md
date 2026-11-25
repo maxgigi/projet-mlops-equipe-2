@@ -25,3 +25,7 @@
 ### Tâches :
 - Créer le script pour l'entrainement du modèle Random Forest avec hyperparamètres différents
 - Créer le script pour l'entrainement du modèle Linear Regression et trois Ridge Regression avec hyperparamètres différents
+
+## 25 novembre 2026
+### Tâches :
+- Créer le script pour reproduire les résultats de l'entrainement du modèle Random Forest et Linear Regression avec Ridge Regression
