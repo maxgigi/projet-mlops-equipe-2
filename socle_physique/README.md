@@ -106,6 +106,29 @@ cat /var/lib/misc/dnsmasq.leases
 - ping nom_de_domaine (ex compute1) fonctionne depuis/vers chaque machine ;
 
 
+## Config switch
+
+display vlan 10   
+ VLAN ID: 10
+ VLAN Type: static
+ Route Interface: not configured
+ Description: MGMT
+ Name: VLAN 0010
+ Tagged   Ports: none
+ Untagged Ports:
+    GigabitEthernet1/0/1     GigabitEthernet1/0/2     GigabitEthernet1/0/3
+    GigabitEthernet1/0/4     GigabitEthernet1/0/7
+
+display vlan 20
+ VLAN ID: 20
+ VLAN Type: static
+ Route Interface: not configured
+ Description: EXTERNAL
+ Name: VLAN 0020
+ Tagged   Ports:
+    GigabitEthernet1/0/1
+ Untagged Ports:
+    GigabitEthernet1/0/5     GigabitEthernet1/0/6
 
 
 
