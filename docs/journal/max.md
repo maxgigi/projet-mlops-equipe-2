@@ -55,5 +55,9 @@
 - Monsieur Ferrere nous a fourni un second adaptateur réseau, qui branché entre le switch et le controller, servira d'interface réseau pour Neutron ;
 - Continue la documentation du déploiement socle physique, ainsi que le bon maintien du dépôt.
 
+## 25/11/2026
 
+- Suis capable de relancer le service OpenStack, grâce à la bonne documentation ;
+- Aide P2 sur l'installation si il rencontre un problème lié au socle physique ;
+- Continue gentiment la documentation et le maintien du dépôt.
 
