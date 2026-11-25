@@ -130,5 +130,9 @@ display vlan 20
 - Untagged Ports:
 -    GigabitEthernet1/0/5     GigabitEthernet1/0/6
 
+## Ordre allumage 
 
+1. Switch et NAT
+2. On attend
+3. Les machines 
 
