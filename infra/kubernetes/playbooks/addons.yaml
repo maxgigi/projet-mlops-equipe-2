@@ -1,0 +1,54 @@
+# Namespaces/quotas/RBAC, stockage, metrics-server, cert-manager.
+- name: Composants du cluster
+  hosts: control_plane
+  become: true
+  vars_files: ["../versions.yaml"]
+  environment:
+    KUBECONFIG: /etc/kubernetes/admin.conf
+  tasks:
+    - name: Copier les manifests
+      ansible.builtin.copy:
+        src: ../manifests/
+        dest: /root/manifests/
+
+    - name: Namespaces, quotas, RBAC
+      ansible.builtin.command: "kubectl apply -f /root/manifests/{{ item }}/"
+      loop: [namespaces, quotas, rbac]
+
+    - name: local-path-provisioner (ADR-007)
+      ansible.builtin.command: >
+        kubectl apply -f
+        https://raw.githubusercontent.com/rancher/local-path-provisioner/{{ local_path_version }}/deploy/local-path-storage.yaml
+
+    - name: local-path en StorageClass par défaut
+      ansible.builtin.command: >
+        kubectl patch storageclass local-path -p
+        '{"metadata":{"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+
+    - name: metrics-server
+      ansible.builtin.command: >
+        kubectl apply -f
+        https://github.com/kubernetes-sigs/metrics-server/releases/download/{{ metrics_server_version }}/components.yaml
+
+    - name: metrics-server avec --kubelet-insecure-tls (choix assumé)
+      ansible.builtin.shell: |
+        kubectl -n kube-system get deploy metrics-server -o yaml | grep -q kubelet-insecure-tls || \
+        kubectl -n kube-system patch deploy metrics-server --type=json \
+          -p '[{"op":"add","path":"/spec/template/spec/containers/0/args/-","value":"--kubelet-insecure-tls"}]'
+      changed_when: false
+
+    - name: cert-manager
+      ansible.builtin.command: >
+        kubectl apply -f
+        https://github.com/cert-manager/cert-manager/releases/download/{{ cert_manager_version }}/cert-manager.yaml
+
+    - name: Attendre cert-manager
+      ansible.builtin.command: kubectl wait --for=condition=Available deployment --all -n cert-manager --timeout=300s
+      changed_when: false
+
+    - name: ClusterIssuer auto-signé
+      ansible.builtin.command: kubectl apply -f /root/manifests/cert-manager/
+      register: issuer
+      retries: 5
+      delay: 15
+      until: issuer.rc == 0

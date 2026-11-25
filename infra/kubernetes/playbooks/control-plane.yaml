@@ -1,0 +1,43 @@
+- name: Initialisation du control plane + CNI Flannel
+  hosts: control_plane
+  become: true
+  vars_files: ["../versions.yaml"]
+  environment:
+    KUBECONFIG: /etc/kubernetes/admin.conf
+  tasks:
+    - name: Fichier de configuration kubeadm
+      ansible.builtin.template:
+        src: templates/kubeadm-config.yaml.j2
+        dest: /root/kubeadm-config.yaml
+        mode: "0600"
+
+    - name: kubeadm init
+      ansible.builtin.command: kubeadm init --config /root/kubeadm-config.yaml
+      args:
+        creates: /etc/kubernetes/admin.conf
+
+    - name: Dossier .kube de l'utilisateur
+      ansible.builtin.file:
+        path: "/home/{{ ansible_user }}/.kube"
+        state: directory
+        owner: "{{ ansible_user }}"
+        mode: "0700"
+
+    - name: Copier admin.conf pour l'utilisateur
+      ansible.builtin.copy:
+        src: /etc/kubernetes/admin.conf
+        dest: "/home/{{ ansible_user }}/.kube/config"
+        remote_src: true
+        owner: "{{ ansible_user }}"
+        mode: "0600"
+
+    - name: Installer Flannel (CNI, ADR-006)
+      ansible.builtin.command: >
+        kubectl apply -f
+        https://github.com/flannel-io/flannel/releases/download/{{ flannel_version }}/kube-flannel.yml
+      register: flannel
+      changed_when: "'created' in flannel.stdout or 'configured' in flannel.stdout"
+
+    - name: Attendre que le control plane soit Ready
+      ansible.builtin.command: kubectl wait --for=condition=Ready node/{{ inventory_hostname }} --timeout=300s
+      changed_when: false

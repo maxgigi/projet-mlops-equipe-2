@@ -1,0 +1,4 @@
+- import_playbook: common.yaml
+- import_playbook: control-plane.yaml
+- import_playbook: workers.yaml
+- import_playbook: addons.yaml

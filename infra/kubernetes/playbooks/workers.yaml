@@ -1,0 +1,25 @@
+- name: Jonction des workers
+  hosts: workers
+  become: true
+  tasks:
+    - name: Générer la commande join (sur le control plane)
+      ansible.builtin.command: kubeadm token create --print-join-command
+      delegate_to: "{{ groups['control_plane'][0] }}"
+      run_once: true
+      register: join_cmd
+      changed_when: false
+
+    - name: kubeadm join
+      ansible.builtin.command: "{{ join_cmd.stdout }}"
+      args:
+        creates: /etc/kubernetes/kubelet.conf
+
+- name: Vérifier que les 4 nœuds sont Ready
+  hosts: control_plane
+  become: true
+  environment:
+    KUBECONFIG: /etc/kubernetes/admin.conf
+  tasks:
+    - name: Attendre tous les nœuds
+      ansible.builtin.command: kubectl wait --for=condition=Ready node --all --timeout=300s
+      changed_when: false
