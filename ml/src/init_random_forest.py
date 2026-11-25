@@ -28,7 +28,7 @@ CSV_PATH = DATA_DIR / "california_housing.csv"
 MANIFEST_PATH = DATA_DIR / "california_housing.manifest.json"
 
 EXPERIMENT = "california-housing"
-REGISTERED_MODEL = "housing-random-forest"
+REGISTERED_MODEL = "california-housing"
 ALIAS = "champion"
 SEED = 42
 
@@ -112,7 +112,7 @@ def main() -> None:
                 mlflow.log_metrics({"rmse": rmse, "mae": mae, "r2": r2})
                 model_info = mlflow.sklearn.log_model(
                     model,
-                    name="model",
+                    name=run_name.replace(".", "_").lower(),
                     signature=infer_signature(X_train, model.predict(X_train)),
                     input_example=X_train.head(3),
                     registered_model_name=REGISTERED_MODEL,

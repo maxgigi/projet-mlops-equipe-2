@@ -19,6 +19,7 @@ import mlflow
 import numpy as np
 import pandas as pd
 from mlflow import MlflowClient
+from mlflow.exceptions import MlflowException
 from mlflow.models import infer_signature
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error, r2_score, root_mean_squared_error
@@ -29,7 +30,7 @@ CSV_PATH = DATA_DIR / "california_housing.csv"
 MANIFEST_PATH = DATA_DIR / "california_housing.manifest.json"
 
 EXPERIMENT = "california-housing"
-REGISTERED_MODEL = "housing-random-forest"
+REGISTERED_MODEL = "california-housing"
 ALIAS = "champion"
 SEED = 42
 
@@ -75,6 +76,9 @@ def main() -> None:
         n_jobs=-1,
     ).fit(X_train, y_train)
     y_pred = model.predict(X_test)
+    rmse = root_mean_squared_error(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
 
     mlflow.set_experiment(EXPERIMENT)
     with mlflow.start_run(run_name="random-forest") as run:
@@ -82,9 +86,9 @@ def main() -> None:
         mlflow.set_tags({"data.sha256": data_sha, "data.file": CSV_PATH.name})
         mlflow.log_metrics(
             {
-                "rmse": root_mean_squared_error(y_test, y_pred),
-                "mae": mean_absolute_error(y_test, y_pred),
-                "r2": r2_score(y_test, y_pred),
+                "rmse": rmse,
+                "mae": mae,
+                "r2": r2,
             }
         )
         info = mlflow.sklearn.log_model(
@@ -98,17 +102,50 @@ def main() -> None:
 
     version = info.registered_model_version
     client = MlflowClient()
-    client.set_registered_model_alias(REGISTERED_MODEL, ALIAS, version)
+    try:
+        champion = client.get_model_version_by_alias(REGISTERED_MODEL, ALIAS)
+    except MlflowException as exc:
+        if exc.error_code != "RESOURCE_DOES_NOT_EXIST":
+            raise
+        champion = None
 
-    reloaded = mlflow.sklearn.load_model(f"models:/{REGISTERED_MODEL}@{ALIAS}")
+    if champion is None:
+        client.set_registered_model_alias(REGISTERED_MODEL, ALIAS, version)
+        champion_version = version
+        champion_rmse = rmse
+        promotion_status = "set as initial champion"
+    else:
+        champion_run = client.get_run(champion.run_id)
+        champion_rmse = champion_run.data.metrics.get("rmse")
+        champion_version = champion.version
+
+        if champion_rmse is None:
+            promotion_status = (
+                "kept current champion: its RMSE is unavailable for comparison"
+            )
+        elif rmse < champion_rmse:
+            client.set_registered_model_alias(REGISTERED_MODEL, ALIAS, version)
+            champion_version = version
+            champion_rmse = rmse
+            promotion_status = "promoted: lower RMSE than current champion"
+        else:
+            promotion_status = "kept current champion: its RMSE is equal or lower"
+
+    reloaded = mlflow.sklearn.load_model(f"models:/{REGISTERED_MODEL}/{version}")
     max_gap = float(np.max(np.abs(reloaded.predict(X_test) - y_pred)))
 
     print(f"run_id             : {run.info.run_id}")
     print(f"model_uri          : {info.model_uri}")
-    print(f"registry           : {REGISTERED_MODEL} v{version} @{ALIAS}")
-    print(f"rmse               : {root_mean_squared_error(y_test, y_pred):.4f}")
-    print(f"mae                : {mean_absolute_error(y_test, y_pred):.4f}")
-    print(f"r2                 : {r2_score(y_test, y_pred):.4f}")
+    print(f"registered_model   : {REGISTERED_MODEL} v{version}")
+    print(f"champion           : v{champion_version} @{ALIAS}")
+    print(
+        "champion_rmse     : "
+        + ("unavailable" if champion_rmse is None else f"{champion_rmse:.4f}")
+    )
+    print(f"promotion          : {promotion_status}")
+    print(f"rmse               : {rmse:.4f}")
+    print(f"mae                : {mae:.4f}")
+    print(f"r2                 : {r2:.4f}")
     print(f"écart max rechargé : {max_gap:.2e} (doit être 0)")
 
 
