@@ -7,9 +7,7 @@
 
 ## 1. Contexte
 
-Dans le cadre du projet Cloud privé et MLOps, le pôle P5 est responsable de l'observabilité de la plateforme Kubernetes et de la réalisation des benchmarks.
-
-L'environnement repose actuellement sur les composants suivants :
+L'environnement repose actuellement sur les composants suivants : (tout ceci est en local)
 
 - **k6** : génération de charge et production des résultats des tests.
 - **Prometheus** : collecte des métriques de l'infrastructure Kubernetes.
