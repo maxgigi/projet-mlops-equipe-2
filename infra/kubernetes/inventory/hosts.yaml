@@ -2,28 +2,29 @@
 # ansible_host : IP de connexion SSH ; node_ip : IP privée du nœud (réseau tenant).
 all:
   vars:
-    ansible_user: ubuntu                        # si on utilise ubuntu
-    ansible_ssh_private_key_file: ~/.ssh/PrivateKey
-    bastion_fip: "FIP"             # floating IP du control plane
+    ansible_user: debian                        # si on utilise ubuntu
+    # ansible_ssh_private_key_file: ~/.ssh/PrivateKey
+    ansible_ssh_common_args: "-o StrictHostKeyChecking=accept-new -o PubkeyAuthentication=no -o PreferredAuthentications=password"
+    bastion_fip: "192.168.200.122"             # floating IP du control plane
   children:
     control_plane:
       hosts:
         cp:
-          ansible_host: "FIP"
-          node_ip: "PRIVATE_IP"
+          ansible_host: "192.168.200.122"
+          node_ip: "10.10.0.91"
     workers:
       vars:
         ansible_ssh_common_args: "-o ProxyJump={{ ansible_user }}@{{ bastion_fip }} -o StrictHostKeyChecking=accept-new"
       hosts:
         worker1:
-          ansible_host: "PRIVATE_IP_W1"
-          node_ip: "PRIVATE_IP_W1"
+          ansible_host: "10.10.0.232"
+          node_ip: "10.10.0.232"
         worker2:
-          ansible_host: "PRIVATE_IP_W2"
-          node_ip: "PRIVATE_IP_W2"
+          ansible_host: "10.10.0.122"
+          node_ip: "10.10.0.122"
         worker3:
-          ansible_host: "PRIVATE_IP_W3"
-          node_ip: "PRIVATE_IP_W3"
+          ansible_host: "10.10.0.121"
+          node_ip: "10.10.0.121"
     k8s:
       children:
         control_plane:
