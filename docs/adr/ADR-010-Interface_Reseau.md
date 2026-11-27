@@ -10,7 +10,7 @@ Dans l'ADR-009, on mentionnait la nécessité de deux interfaces réseau supplé
 Initialement, nous étions parti avec deux adaptateurs USB vers RJ45 (Ethernet). Nous avions configuré nos services pour cela, et l'ensemble socle physique + openstack (jalon 2) fonctionnait.
 
 Cependant, à quelques reprises, l'adaptateur Switch-Controller s'est déconnecté à de multiples reprises, causant des issues pour nos VMs et pour les activités qui s'appuient dessus (Kubernetes, MLFlow..).
-Ci-dessous un exemple flagrant : /img
+Ci-dessous un exemple flagrant : ![Dongle_fautif.png](/openstack/screenshots/Dongle_fautif.png)
 
 Après quelques recherches (https://www.forum-nas.fr/threads/adaptateur-usb-3-0-rj45-2-5gb-vos-experiences.22099),
 on apprend que ces adaptateurs sont très sensibles à la chauffe et à la poussière.
