@@ -1,4 +1,4 @@
-# ADR-11 – Stratégie de collecte, d'analyse et d'export des benchmarks
+# ADR-12 – Stratégie de collecte, d'analyse et d'export des benchmarks
 
 -Date : 27/11/2026
 
