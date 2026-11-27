@@ -61,3 +61,8 @@
 - Aide P2 sur l'installation si il rencontre un problème lié au socle physique ;
 - Continue gentiment la documentation et le maintien du dépôt.
 
+## 27/11/2026
+
+- Mini fix socle physique.
+- Doc + dépôt.
+
