@@ -80,4 +80,4 @@
 ## 26 novembre 2026
 
 ### Tâches :
-- correction problème de connection dû on dongle/port usb défaillant (passage sur interface virtuelle avec modif de la config du switch) 
+- correction problème de connection dû au dongle/port usb défaillant (passage sur interface virtuelle avec modif de la config du switch) 
