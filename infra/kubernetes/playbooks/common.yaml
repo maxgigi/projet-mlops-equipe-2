@@ -45,16 +45,29 @@
         update_cache: true
         state: present
 
-    - name: Générer la config containerd par défaut
-      ansible.builtin.shell: "mkdir -p /etc/containerd && containerd config default > /etc/containerd/config.toml"
-      args:
-        creates: /etc/containerd/config.toml
+    - name: Générer la config containerd si elle est vide ou incomplète
+      ansible.builtin.shell: |
+        grep -q 'SystemdCgroup' /etc/containerd/config.toml 2>/dev/null || {
+          mkdir -p /etc/containerd
+          containerd config default > /etc/containerd/config.toml
+          echo GENERATED
+        }
+      register: cfg
+      changed_when: "'GENERATED' in cfg.stdout"
+      notify: restart containerd
 
     - name: Activer SystemdCgroup
       ansible.builtin.replace:
         path: /etc/containerd/config.toml
         regexp: 'SystemdCgroup = false'
         replace: 'SystemdCgroup = true'
+      notify: restart containerd
+
+    - name: Image pause alignée sur kubeadm
+      ansible.builtin.replace:
+        path: /etc/containerd/config.toml
+        regexp: 'sandbox_image = ".*"'
+        replace: 'sandbox_image = "registry.k8s.io/pause:3.9"'
       notify: restart containerd
 
     - name: Dossier des clés apt
@@ -99,6 +112,12 @@
         enabled: true
         state: started
       loop: [containerd, kubelet]
+    
+    - name: Résolution du nom d'hôte
+      ansible.builtin.lineinfile:
+        path: /etc/hosts
+        line: "{{ node_ip }} {{ inventory_hostname }}"
+        regexp: '\s{{ inventory_hostname }}$'
 
   handlers:
     - name: restart containerd
