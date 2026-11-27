@@ -1,7 +1,8 @@
 # ADR-11 – Stratégie de collecte, d'analyse et d'export des benchmarks
 
-Date : 27/11/2026
-Statut : Proposée
+-Date : 27/11/2026
+
+-Statut : Proposée
 
 
 ## 1. Contexte
