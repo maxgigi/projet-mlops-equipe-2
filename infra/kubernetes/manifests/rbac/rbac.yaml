@@ -1,0 +1,42 @@
+# ServiceAccounts et Roles dédiés par namespace.
+apiVersion: v1
+kind: ServiceAccount
+metadata: { name: sa-models, namespace: models }   # utilisé par P4 (KServe, accès S3)
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata: { name: models-reader, namespace: models }
+rules:
+  - apiGroups: [""]
+    resources: [secrets, configmaps, pods, services]
+    verbs: [get, list, watch]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata: { name: sa-models-binding, namespace: models }
+subjects:
+  - { kind: ServiceAccount, name: sa-models, namespace: models }
+roleRef: { kind: Role, name: models-reader, apiGroup: rbac.authorization.k8s.io }
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata: { name: sa-mlops, namespace: mlops }
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata: { name: mlops-manager, namespace: mlops }
+rules:
+  - apiGroups: ["", apps]
+    resources: [pods, services, configmaps, secrets, persistentvolumeclaims, deployments, statefulsets]
+    verbs: ["*"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata: { name: sa-mlops-binding, namespace: mlops }
+subjects:
+  - { kind: ServiceAccount, name: sa-mlops, namespace: mlops }
+roleRef: { kind: Role, name: mlops-manager, apiGroup: rbac.authorization.k8s.io }
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata: { name: sa-monitoring, namespace: monitoring }

@@ -1,0 +1,15 @@
+# Exposition MVP (RawDeployment) : NodePort fixe sur le predictor.
+# k6 appelle http://<FIP_WORKER>:30080/v1/models/<nom>:predict
+# NB : ingress-nginx n'est plus maintenu depuis mars 2026 -> NodePort retenu pour le MVP (Kourier au Niveau 2).
+apiVersion: v1
+kind: Service
+metadata: { name: housing-sklearn-nodeport, namespace: models }
+spec:
+  type: NodePort
+  selector:
+    serving.kserve.io/inferenceservice: housing-sklearn   # A_ADAPTER : nom de l'InferenceService (P4)
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080          # port du predictor en RawDeployment
+      nodePort: 30080           # dans la plage ouverte par le groupe de sécurité

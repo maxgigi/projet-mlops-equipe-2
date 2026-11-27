@@ -1,0 +1,6 @@
+# Émetteur auto-signé (suffisant pour les webhooks KServe en MVP).
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata: { name: selfsigned-issuer }
+spec:
+  selfSigned: {}

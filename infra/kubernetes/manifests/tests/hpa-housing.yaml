@@ -1,0 +1,14 @@
+# HPA de référence : CPU 50 %, 1 à 5 réplicas. En RawDeployment KServe, le Deployment s'appelle <isvc>-predictor.
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata: { name: housing-sklearn, namespace: models }
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: housing-sklearn-predictor       # A_ADAPTER selon le nom de l'InferenceService (P4)
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+    - type: Resource
+      resource: { name: cpu, target: { type: Utilization, averageUtilization: 50 } }
