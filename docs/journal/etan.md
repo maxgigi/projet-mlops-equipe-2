@@ -66,3 +66,18 @@
 - création réseau openstack
 - script provision.sh (projet [quota], user, instances ...) et destroy.sh adapté
 - création des VMs pour Kubernetes
+
+
+## 25 novembre 2026
+
+### Tâches :
+- correction ordre allumage (cause de problème réseau)
+- Correction de problème de connexion des computes au cluster
+- correction problème de problème de redémarrage des VMs
+- correction connection extérieur sur le switch
+
+
+## 26 novembre 2026
+
+### Tâches :
+- correction problème de connection dû on dongle/port usb défaillant (passage sur interface virtuelle avec modif de la config du switch) 
