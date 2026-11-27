@@ -31,6 +31,14 @@
         owner: "{{ ansible_user }}"
         mode: "0600"
 
+    - name: Attendre que l'API server réponde
+      ansible.builtin.command: kubectl get --raw /readyz
+      register: api
+      retries: 30
+      delay: 10
+      until: api.rc == 0
+      changed_when: false
+
     - name: Installer Flannel (CNI, ADR-006)
       ansible.builtin.command: >
         kubectl apply -f
