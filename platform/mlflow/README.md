@@ -26,10 +26,11 @@ cp platform/mlflow/secret.env.example platform/mlflow/secret.env   # puis édite
 
 # 3. Déploiement et vérification
 kubectl apply -k platform/mlflow
-platform/mlflow/check.sh                 # sur la cible : check.sh http://<IP nœud>:30500
+platform/mlflow/tests/check.sh           # sur la cible : check.sh http://<IP nœud>:30500
 ```
 
-`check.sh` attend les pods, lance le smoke test de bout en bout via le NodePort,
+Les fichiers de test sont dans `tests/` (non déployés par `kubectl apply -k`).
+`tests/check.sh` attend les pods, lance le smoke test de bout en bout via le NodePort,
 puis vérifie la persistance (K8S-3) en supprimant le pod PostgreSQL.
 
 ## Utiliser depuis un poste hors cluster
@@ -64,7 +65,7 @@ kubectl -n mlops delete pvc --all    # pour tout effacer
 ## Cluster de développement local (kind)
 
 ```bash
-kind create cluster --name p3 --config platform/mlflow/kind.yaml
+kind create cluster --name p3 --config platform/mlflow/tests/kind.yaml
 ```
 
 Le NodePort 30500 est publié sur `http://localhost:30500`.

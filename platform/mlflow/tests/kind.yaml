@@ -1,5 +1,5 @@
 # Cluster de développement local (pas la cible) pour valider la pile MLflow.
-# kind create cluster --name p3 --config platform/mlflow/kind.yaml
+# kind create cluster --name p3 --config platform/mlflow/tests/kind.yaml
 # Le NodePort 30500 de MLflow est publié sur http://localhost:30500.
 ---
 kind: Cluster

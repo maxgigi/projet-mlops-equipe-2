@@ -5,12 +5,12 @@
 #   3. persistance (exigence K8S-3) : le pod PostgreSQL est supprimé puis recréé,
 #      et le modèle enregistré doit toujours être là.
 # Usage (depuis la racine du dépôt) :
-#   platform/mlflow/check.sh [URL_MLFLOW]      # défaut : http://localhost:30500
+#   platform/mlflow/tests/check.sh [URL_MLFLOW]   # défaut : http://localhost:30500
 set -euo pipefail
 
 NS=mlops
 URL="${1:-http://localhost:30500}"
-ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
+ROOT="$(cd "$(dirname "$0")/../../.." && pwd)"
 export MLFLOW_TRACKING_URI="$URL"
 export MLFLOW_ENABLE_PROXY_MULTIPART_DOWNLOAD=false
 export MLFLOW_DISABLE_AGENT_HINT=1
