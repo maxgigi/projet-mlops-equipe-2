@@ -71,5 +71,11 @@
 ### Problèmes rencontrés
 - Relégation de mon idée initiale du transfert et de visualisation de données via extraction depuis Grafana pour une solution plus simple, qu'est le fichier Python générant les graphiques.
 
+## 27 novembre 2026
 
-  
+### Tâches faites
+- Ajout de nouveaux ADR : ADR 11 et ADR 12.
+
+
+### Problèmes rencontrés
+
