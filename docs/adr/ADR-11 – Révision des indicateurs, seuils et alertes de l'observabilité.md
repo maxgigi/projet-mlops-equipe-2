@@ -332,9 +332,9 @@ Ces seuils sont des valeurs initiales à tester sur les workloads du projet.
 | CPU / limite CPU | Inférieur à 70 % | 70–85 % | Supérieur à 85 % |
 | Mémoire / limite mémoire | Inférieur à 85 % | 85–95 % | Supérieur à 95 % |
 
-Ces couleurs servent à faciliter la lecture des graphiques.
+Ajout de couleurs différentes afin de faciliter la lecture des graphiques.
 
-Elles ne constituent pas automatiquement des conditions d'alerte.
+Ces indicateurs ne constituent pas automatiquement des conditions d'alerte.
 
 Pour les CPU sans limite configurée, le pourcentage d'utilisation par rapport à une limite ne doit pas être calculé artificiellement.
 
